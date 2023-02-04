@@ -1,0 +1,178 @@
+<launch> 
+  <node name="mav_planning_node" pkg="mav_planning" type="planner_node" output="screen">
+
+  <!-- Common -->
+  <param name="publish_debug_sup" value="true"/>
+  <param name="publish_debug_env" value="false"/>
+  <param name="publish_debug_exp" value="false"/>
+  <param name="publish_debug_rep" value="false"/>
+  <param name="publish_debug_tra" value="false"/>
+  <param name="publish_debug_ins" value="false"/>
+  <param name="publish_debug_lan" value="false"/>
+
+  <!-- Torino -->
+  <param name="max_x" value="0.0"/>
+  <param name="max_y" value="10.0"/>
+  <param name="max_z" value="2.5"/>
+  <param name="min_x" value="-20.0"/>
+  <param name="min_y" value="0.0"/>
+  <param name="min_z" value="0.05"/>
+
+  <!-- Cesena -->
+  <!--
+  <param name="max_x" value="8.0"/>
+  <param name="max_y" value="11.0"/>
+  <param name="max_z" value="3.0"/>
+  <param name="min_x" value="-0.5"/>
+  <param name="min_y" value="-0.5"/>
+  <param name="min_z" value="-0.5"/>
+  -->
+
+  <param name="map_resolution" value="0.15"/>
+  <param name="safe_margin" value="0.6"/>
+  <param name="max_velocity" value="0.4"/>
+  <param name="max_acceleration" value="0.4"/>
+  <param name="spline_order" value="7"/>
+  <param name="takeoff_altitude" value="1.0"/>
+
+  <!-- Supervisor -->
+  <param name="use_replanner" value="true"/>
+  <param name="takeoff_velocity" value="0.3"/>
+  <param name="rotation_velocity" value="0.2"/>
+  <param name="yaw_threshold" value="0.1"/>
+  <param name="nn_cicles_btw_replanner" value="2"/>
+  <param name="landing_zz_threshold" value="0.1"/>
+  <param name="landing_time_threshold" value="5.0"/>
+
+  <!-- Environment -->
+  <param name="px_sensor" value="0.05"/>
+  <param name="py_sensor" value="0.1"/>
+  <param name="pz_sensor" value="0.1"/>
+  <param name="qx_sensor" value="-0.5"/>
+  <param name="qy_sensor" value="0.5"/>
+  <param name="qz_sensor" value="-0.5"/>
+  <param name="qw_sensor" value="0.5"/>
+  <param name="min_sensor_r" value="0.55"/>
+  <param name="max_sensor_r" value="5.5"/>
+  <param name="max_cutoff_dd" value="10.0"/>
+  <param name="color_factor" value="0.8"/>
+  <param name="prob_hitting" value="0.75"/>
+  <param name="prob_missing" value="0.1"/>
+  <param name="min_thr" value="0.12"/>
+  <param name="max_thr" value="0.97"/>
+  <param name="occ_thr" value="0.51"/>
+  <param name="insertion_margin" value="0.3"/>
+  <param name="use_previous_map" value="true"/>
+  <param name="downsample_resolution" value="0.1"/>
+  <param name="mean_kk_neighbors" value="50"/>
+  <param name="std_deviation" value="1.0"/>
+  <param name="max_nn_threads" value="4"/>
+
+  <param name="map_name" value="/home/nvidia/catkin_ws/src/flightmare/flightrender/pointcloud_data/leonardo.ply"/>
+  <param name="grid_name" value="/home/nvidia/catkin_ws/src/mav_planning/data/leonardo.bin"/>
+
+  <!-- Explorer -->
+  <param name="max_radius" value="4.0"/>
+  <param name="min_radius" value="0.5"/>
+  <param name="max_n_nodes" value="1500"/>
+  <param name="n_childrens" value="60"/>
+  <param name="sampling_res" value="1.5"/>
+  <param name="cost_increasing_time" value="1.01"/>
+  <param name="cost_decreasing_visiting" value="0.5"/>
+  <param name="sensor_radius" value="0.5"/>
+  <param name="max_velocity_explorer" value="0.4"/>
+
+  <!-- Optimizer -->
+  <param name="smooth_cost" value="10.0"/>
+  <param name="distance_cost" value="5.0"/>
+  <param name="feasibility_cost" value="0.00001"/>
+  <param name="endpoint_cost" value="0.01"/>
+  <param name="guide_cost" value="100.0"/>
+  <param name="waypoint_cost" value="5.0"/>
+  <param name="max_iterations" value="100"/>
+  <param name="max_opt_time" value="0.1"/>
+  <param name="variable_bound" value="5.0"/>
+
+  <!-- Planner -->
+  <param name="max_number_node" value="2000"/>
+  <param name="heuristic_weight" value="10.0"/>
+  <param name="acc_resolution" value="0.1"/>
+  <param name="minimum_time" value="0.3"/>
+  <param name="maximum_time" value="0.9"/>
+  <param name="time_resolution" value="0.3"/>
+  <param name="time_step_size" value="0.01"/>
+  <param name="time_weight" value="2.0"/>
+  <param name="planner_map_resolution" value="0.2"/>
+  <param name="goal_threshold" value="1.0"/>
+  <param name="delta_sampling" value="0.5"/>
+
+  <!-- Replanner -->
+  <param name="obstacle_size" value="1.0"/>
+  <param name="max_ahead_time" value="5.0"/>
+  <param name="min_time_emergency" value="0.8"/>
+  <param name="check_time_resolution" value="0.1"/>
+  <param name="max_sample_pts" value="5000"/>
+  <param name="max_sample_time" value="0.5"/>
+  <param name="x_inflate" value="2.0"/>
+  <param name="y_inflate" value="4.0"/>
+  <param name="z_inflate" value="2.0"/>
+  <param name="maximum_paths_number" value="10"/>
+  <param name="maximum_optimizing_paths_number" value="5"/>
+  <param name="use_multi_threads" value="true"/>
+  <param name="do_final_optimization" value="false"/>
+
+  <!-- Tracker -->
+  <param name="pi_diag_0" value="1.0"/>
+  <param name="pi_diag_1" value="1.0"/>
+  <param name="pi_diag_2" value="1.0"/>
+  <param name="pi_diag_3" value="1.0"/>
+  <param name="pi_diag_4" value="1.0"/>
+  <param name="qq_diag_0" value="0.4"/>
+  <param name="qq_diag_1" value="0.4"/>
+  <param name="qq_diag_2" value="5.0"/>
+  <param name="qq_diag_3" value="0.6"/>
+  <param name="qq_diag_4" value="5.0"/>
+
+  <param name="robot_id" value="30"/>
+  <param name="max_dt" value="3.0"/>
+  <param name="robot_radius" value="0.3"/>
+  <param name="points_number" value="3"/>
+  <param name="look_ahead_time" value="1.5"/>
+  <param name="const_linear_deceleration" value="0.3"/>
+  <param name="const_angular_deceleration" value="0.2"/>
+  <param name="kp" value="0.2"/>
+  <param name="ki" value="0.01"/>
+  <param name="kp_yaw" value="0.14"/>
+  <param name="ki_yaw" value="0.005"/>
+
+  <!-- Inspector -->
+  <param name="delta_angle" value="0.5"/>
+  <param name="delta_zz" value="0.45"/>
+  <param name="max_inspect_radius" value="1.7"/>
+  <param name="opt_inspect_radius" value="1.1"/>
+  <param name="safety_relaxing_factor" value="0.1"/>
+  <param name="nn_sampling_points" value="700"/>
+  <param name="max_iterations_tsp" value="20000"/>
+  <param name="update_lr" value="0.99997"/>
+  <param name="initial_lr" value="0.8"/>
+  <param name="update_nn" value="0.9997"/>
+  <param name="x_inflate_inps" value="0.5"/>
+  <param name="y_inflate_inps" value="0.5"/>
+  <param name="z_inflate_inps" value="2.0"/>
+  <param name="max_sampling_time" value="0.02"/>
+  <param name="max_paths_nn" value="5"/>
+  <param name="max_inspection_vel" value="0.2"/>
+  <param name="new_smooth_cost" value="100.0"/>
+  <param name="new_guide_cost" value="100.0"/>
+  <param name="use_last_point" value="false"/>
+
+  <!-- Lander -->
+  <param name="land_velocity" value="0.15"/>
+  <param name="final_zz" value="-1.0"/>
+  <param name="theta_thr" value="0.3"/>
+  <param name="rho_thr" value="50.0"/>
+  <param name="orthogonal_thr" value="0.15"/>
+  <param name="square_thr_perc" value="0.15"/>
+
+  </node>
+</launch>
